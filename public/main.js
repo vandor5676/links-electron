@@ -1,7 +1,8 @@
 const path = require('path');
 
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
+const ipc = ipcMain
 
 function createWindow() {
   // Create the browser window.
@@ -11,7 +12,8 @@ function createWindow() {
     frame: false,
     autoHideMenuBar: true,
     webPreferences: {
-        preload: path.join(app.getAppPath(), 'preload.js')
+        contextIsolation:true,
+        preload: path.join(__dirname, 'preload.js')
     },
   });
   // and load the index.html of the app.
@@ -25,7 +27,17 @@ function createWindow() {
 //   if (isDev) {
 //     win.webContents.openDevTools({ mode: 'detach' });
 //   }
+ipc.on('maximize', ()=>
+    {
+      win.maximize()
+    })
+ipc.on('minimize', ()=>
+    {
+      win.minimize()
+    })
+    
 }
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

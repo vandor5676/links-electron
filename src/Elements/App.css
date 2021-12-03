@@ -40,11 +40,50 @@
   }
 }
 
+
+/* Drawer ================================ */
 .Drawer
 {
   width: var(--drawerWidth);
   flex: 0 0 auto;
   background-color: var(--color1);
+  user-select: none
 }
+.drawerItemWrapper
+{
+  display:flex;
+  margin: 0 0 10px 10px;
+  padding: 5px 5px;
+  
+}
+.drawerItemWrapperSelected
+{
+  display:flex;
+  margin: 0 10px 10px 10px;
+  padding: 5px 5px;
+  background-color: #ACF7FF;
+  border-radius: 5px;
+  color: #008DF8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.drawerIcon
+{
+  filter: invert(39%) sepia(87%) saturate(2486%) hue-rotate(185deg) brightness(98%) contrast(103%);
+  width: 10.5%;
+  margin: 0 10px 0 0;
+  
+}
+img{
+  -webkit-user-drag: none
+}
+.drawerItemText
+{
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+/* ======================================== */
 
 

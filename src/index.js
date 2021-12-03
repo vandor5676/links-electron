@@ -1,14 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import TitleBar from './TitleBar';
-import App from './App';
+import TitleBar from './Elements/TitleBar';
+import App from './Elements/App';
 import reportWebVitals from './reportWebVitals';
+
+// const state = {
+//   drawerItems:
+//     [
+//       { id: 1, name: "Links", icon: "none" },
+//       { id: 1, name: "Explorer", icon: "none" },
+//       { id: 1, name: "Images", icon: "none" },
+//     ]
+// }
 
 ReactDOM.render(
   <React.StrictMode>
     <TitleBar/>
-    <App />
+    <App  />
   </React.StrictMode>,
   document.getElementById('root')
 );
