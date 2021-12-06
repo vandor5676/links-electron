@@ -9,8 +9,7 @@
     height: 30px;
     flex: 0 1 25px;
     background-color: var(--color2);
-    display: flex;
-    
+    display: flex;    
 }
 
 
@@ -24,7 +23,7 @@
     flex: 1 0 auto;
     background-color: var(--color2);
     flex: auto;
-    /* box-shadow: 0px -20px 40000px; 46*/
+    z-index: 101;
 }
 
 /* Title bar Buttons */
