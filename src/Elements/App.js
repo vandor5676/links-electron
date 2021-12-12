@@ -1,6 +1,7 @@
 import logo from '../svg/logo.svg';
 import drawerFolder from '../svg/drawerFolder.svg';
 // shape for the top and bottom of the drawer
+import explorerIcon from '../Images/explorerIcon.png';
 import drawerStylisticShape from '../Images/Polygon.png';
 import './App.css';
 import { useState } from 'react';
@@ -24,8 +25,22 @@ function App() {
         { id: 0, name: "Links", icon: drawerFolder ,selected: true  },
         { id: 1, name: "Explorer", icon: drawerFolder ,selected: false},
         { id: 2, name: "Images", icon: drawerFolder ,selected: false},
+      ],
+      listItems:
+      [
+        { id: 0, name: "drw", icon: explorerIcon ,selected: true  },
+        { id: 1, name: "PSs", icon: explorerIcon ,selected: false},
+        { id: 2, name: "ImageFiles5.0", icon: explorerIcon ,selected: false},
       ]
   })
+  const [listItems, setlistItems] = useState({
+    listItems:
+      [
+        { id: 0, name: "drw", icon: explorerIcon ,selected: true  },
+        { id: 1, name: "PSs", icon: explorerIcon ,selected: false},
+        { id: 2, name: "ImageFiles5.0", icon: explorerIcon ,selected: false},
+      ]
+    })
   return (
     <div className="App">
       
@@ -45,18 +60,20 @@ function App() {
         <img className="drawer-bottom-shape" src={drawerStylisticShape} alt=""/>
       </div>
       <header className="app-body">
-        <img src={logo} className="App-logo drag" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/* populate app body content */}
+        <div className = "list-wrapper">
+
+        { listItems.listItems.map((item)=>{
+          return  <div>
+          <div className="list-item">
+          <img className = "list-icon" src ={item.icon} alt="Folder Icon" ></img>
+            <div className = "list-name"> {item.name}</div>          
+          </div>
+          <div className = "list-divider"></div>
+          </div>
+        })}
+        </div>
+      
       </header>
     </div>
   );

@@ -23,10 +23,8 @@ function createWindow() {
       ? 'http://localhost:3000'
       : `file://${path.join(__dirname, '../build/index.html')}`
   );
-  // Open the DevTools.
-//   if (isDev) {
-//     win.webContents.openDevTools({ mode: 'detach' });
-//   }
+
+  //functions for minimizing and maximizing
 ipc.on('maximize', ()=>
     {
       win.maximize()
