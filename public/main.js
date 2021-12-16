@@ -12,8 +12,8 @@ function createWindow() {
     frame: false,
     autoHideMenuBar: true,
     webPreferences: {
-        contextIsolation:true,
-        preload: path.join(__dirname, 'preload.js')
+      contextIsolation: true,
+      preload: path.join(__dirname, 'preload.js')
     },
   });
   // and load the index.html of the app.
@@ -25,16 +25,42 @@ function createWindow() {
   );
 
   //functions for minimizing and maximizing
-ipc.on('maximize', ()=>
-    {
-      win.maximize()
-    })
-ipc.on('minimize', ()=>
-    {
-      win.minimize()
-    })
+  ipc.on('maximize', (event) => {
+
+    //const path ="D:\\Program Files (x86)\\Regclean pro\\Folder\\dhg\\drw\\top\\sciamano"
+    require('child_process').exec(`start "" "${path}"`);
+    event.reply('asynchronous-reply', path)
+
+
+    win.maximize()
+    console.log('maximized');
+  })
+  ipc.on('minimize', () => {
+    win.minimize()
+  })
+  ipc.on('sendData', (event) => {
+    const path ="D:\\Program Files (x86)\\Regclean pro\\Folder\\dhg\\drw\\top\\sciamano"
+    require('child_process').exec(`start "" "${path}"`);
     
+
+   const items=
+      [
+        { id: 0, name: "drw", icon: "../Images/explorerIcon.png", selected: true },
+        { id: 1, name: "PSs", icon: "../Images/explorerIcon.png", selected: false },
+        { id: 2, name: "ImageFiles5.0", icon: "../Images/explorerIcon.png", selected: false },
+      ]
+
+    const fs = require('fs')
+    const filePath = "./data.json"
+    fs.writeFileSync(filePath, JSON.stringify(items, null, 2) , 'utf-8');
+
+    var data = JSON.parse(fs.readFileSync(filePath));
+    event.returnValue = data[1].name
+    console.log("ipcMain: sendData ")
+  })
+
 }
+
 
 
 // This method will be called when Electron has finished

@@ -4,20 +4,21 @@ import './index.css';
 import TitleBar from './Elements/TitleBar';
 import App from './Elements/App';
 import reportWebVitals from './reportWebVitals';
+import drawerFolder from './svg/drawerFolder.svg';
 
-// const state = {
-//   drawerItems:
-//     [
-//       { id: 1, name: "Links", icon: "none" },
-//       { id: 1, name: "Explorer", icon: "none" },
-//       { id: 1, name: "Images", icon: "none" },
-//     ]
-// }
+const drawerItems = {
+  drawerItems:
+    [
+      { id: 0, name: "Links", icon: drawerFolder, selected: true },
+        { id: 1, name: "Explorer", icon: drawerFolder, selected: false },
+        { id: 2, name: "Images", icon: drawerFolder, selected: false },
+    ]
+}
 
 ReactDOM.render(
   <React.StrictMode>
     <TitleBar/>
-    <App  />
+    <App drawerItems = {drawerItems} />
   </React.StrictMode>,
   document.getElementById('root')
 );

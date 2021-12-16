@@ -4,7 +4,9 @@ console.log("Preload script loaded")
 
 contextBridge.exposeInMainWorld('myAPI', {
   maximize: () => {ipcRenderer.send('maximize')},
-  minimize: () => {ipcRenderer.send('minimize')}
+  minimize: () => {ipcRenderer.send('minimize')},
+  sendData: () => {return ipcRenderer.sendSync('sendData')},
+
 })
 
 window.addEventListener('DOMContentLoaded', () => {
