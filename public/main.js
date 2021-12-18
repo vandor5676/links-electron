@@ -3,6 +3,8 @@ const path = require('path');
 const { app, BrowserWindow, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
 const ipc = ipcMain
+const fs = require('fs')
+
 
 function createWindow() {
   // Create the browser window.
@@ -31,32 +33,27 @@ function createWindow() {
     require('child_process').exec(`start "" "${path}"`);
     event.reply('asynchronous-reply', path)
 
-
     win.maximize()
     console.log('maximized');
   })
   ipc.on('minimize', () => {
     win.minimize()
   })
-  ipc.on('sendData', (event) => {
-    const path ="D:\\Program Files (x86)\\Regclean pro\\Folder\\dhg\\drw\\top\\sciamano"
-    require('child_process').exec(`start "" "${path}"`);
+  ipc.on('getDrawerItems', (event) => {
+    // const path ="D:\\Program Files (x86)\\Regclean pro\\Folder\\dhg\\drw\\top\\sciamano"
+    // require('child_process').exec(`start "" "${path}"`);
     
-
-   const items=
-      [
-        { id: 0, name: "drw", icon: "../Images/explorerIcon.png", selected: true },
-        { id: 1, name: "PSs", icon: "../Images/explorerIcon.png", selected: false },
-        { id: 2, name: "ImageFiles5.0", icon: "../Images/explorerIcon.png", selected: false },
-      ]
-
-    const fs = require('fs')
-    const filePath = "./data.json"
-    fs.writeFileSync(filePath, JSON.stringify(items, null, 2) , 'utf-8');
-
-    var data = JSON.parse(fs.readFileSync(filePath));
-    event.returnValue = data[1].name
+    const filePath = "./drawerItems.json"
+    // fs.writeFileSync(filePath, JSON.stringify(event, null, 2) , 'utf-8');
+    var drawerItems = JSON.parse(fs.readFileSync(filePath));
+    
+    event.returnValue = drawerItems
     console.log("ipcMain: sendData ")
+  })
+  ipc.on('getMainItems',(event, arg)=>
+  {
+    console.log("getMainItems ", arg)
+    const filePath = "./mainItems.json"
   })
 
 }

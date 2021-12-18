@@ -6,23 +6,21 @@ import drawerStylisticShape from '../Images/Polygon.png';
 import './App.css';
 import { useState, useEffect } from 'react';
 
-
 function App(props) {
   console.log("App Page Loaded")
-  
 
   const toggleSelected = index => {
-    let copy = [...drawerItems.drawerItems]
+    let copy = drawerItems.drawerItems
     copy.forEach(element => {
       element.selected = false
     });
     copy[index].selected = true
-    setDrawerItems({ drawerItems: copy })
-    alert(window.myAPI.sendData())
+    setDrawerItems({drawerItems: copy})
+
   }
 
   const [drawerItems, setDrawerItems] = useState(
-    props.drawerItems
+    {drawerItems: props.drawerItems}
   )
   const [listItems, setlistItems] = useState({
     listItems:
@@ -33,6 +31,20 @@ function App(props) {
       ]
   })
 
+  //returns an icon because i cant use the import inside the json file that the prop is populated with
+  function getIcon(icon) {
+    switch (icon) {
+      case "drawerFolder":
+        return drawerFolder
+      case "explorerIcon":
+        return explorerIcon
+
+      default:
+        return drawerFolder
+
+    }
+
+  }
 
 
   return (
@@ -45,7 +57,7 @@ function App(props) {
         {/* populate Drawer */}
         {drawerItems.drawerItems.map((item) => {
           return <div key={item.id} onClick={() => toggleSelected(item.id)} className={item.selected ? "drawerItemWrapperSelected" : "drawerItemWrapper"}>
-            <img src={item.icon} className={item.selected ? "drawerIconSelected" : "drawerIcon"} alt="logo" />
+            <img src={getIcon(item.icon)} className={item.selected ? "drawerIconSelected" : "drawerIcon"} alt="logo" />
             <div className="drawerItemText">{`${item.name}`}</div>
           </div>
         })}
@@ -55,20 +67,34 @@ function App(props) {
         {/* populate app body content */}
         <div className="list-wrapper">
 
-          {listItems.listItems.map((item) => {
-            return <div>
-              <div className="list-item">
-                <img className="list-icon" src={item.icon} alt="Folder Icon" ></img>
-                <div className="list-name"> {item.name}</div>
-              </div>
-              <div className="list-divider"></div>
-            </div>
-          })}
+          {populateMainItems(drawerItems)}
         </div>
 
       </header>
     </div>
   );
+
+  function populateMainItems(state)
+  {
+    //find selected //use some?
+    let selectedIndex;
+    state.drawerItems.forEach(element => {
+      if (element.selected === true)
+      {
+      selectedIndex = element.id
+      }
+    });
+    // return items
+    return state.drawerItems[selectedIndex].items.map((item) => {
+      return <div>
+        <div className="list-item">
+          <img className="list-icon" src={getIcon(item.icon)} alt="Folder Icon" ></img>
+          <div className="list-name"> {item.name}</div>
+        </div>
+        <div className="list-divider"></div>
+      </div>
+    })
+  }
 }
 
 export default App;

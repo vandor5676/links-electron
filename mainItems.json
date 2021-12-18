@@ -1,0 +1,20 @@
+[
+    {
+      "id": 0,
+      "name": "Links",
+      "icon": "drawerFolder",
+      "selected": true
+    },
+    {
+      "id": 1,
+      "name": "Explorer",
+      "icon": "../Images/explorerIcon.png",
+      "selected": false
+    },
+    {
+      "id": 2,
+      "name": "Images",
+      "icon": "../Images/explorerIcon.png",
+      "selected": false
+    }
+  ]
