@@ -26,12 +26,9 @@ function createWindow() {
       : `file://${path.join(__dirname, '../build/index.html')}`
   );
 
+  const filePath = "./state.json"
   //functions for minimizing and maximizing
   ipc.on('maximize', (event) => {
-
-    //const path ="D:\\Program Files (x86)\\Regclean pro\\Folder\\dhg\\drw\\top\\sciamano"
-    require('child_process').exec(`start "" "${path}"`);
-    event.reply('asynchronous-reply', path)
 
     win.maximize()
     console.log('maximized');
@@ -39,22 +36,38 @@ function createWindow() {
   ipc.on('minimize', () => {
     win.minimize()
   })
-  ipc.on('getDrawerItems', (event) => {
+
+  ipc.on('getState', (event) => {
     // const path ="D:\\Program Files (x86)\\Regclean pro\\Folder\\dhg\\drw\\top\\sciamano"
     // require('child_process').exec(`start "" "${path}"`);
-    
-    const filePath = "./drawerItems.json"
+  
     // fs.writeFileSync(filePath, JSON.stringify(event, null, 2) , 'utf-8');
     var drawerItems = JSON.parse(fs.readFileSync(filePath));
     
     event.returnValue = drawerItems
     console.log("ipcMain: sendData ")
   })
-  ipc.on('getMainItems',(event, arg)=>
-  {
-    console.log("getMainItems ", arg)
-    const filePath = "./mainItems.json"
+
+  ipc.on('saveState', (event, arg) => {
+    fs.writeFileSync(filePath, JSON.stringify(arg, null, 2) , 'utf-8');
+    console.log("ipcMain: setState ")
   })
+
+  ipc.on('openFolder',(event, arg)=>
+  {
+    console.log("Open... ", arg)
+    const filePath = arg
+    require('child_process').exec(`start "" "${filePath}"`);
+    event.returnValue = 'ok'
+  })
+
+  // ipcMain.on('ondragstart', (event, filePath) => {
+  //   console.log("onDragStart")
+  //   event.sender.startDrag({
+  //     file: path.join(__dirname, filePath),
+  //     icon: "iconName",
+  //   })
+  // })
 
 }
 
@@ -79,3 +92,48 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+
+// [{
+//   "id": 0,
+//   "name": "Links",
+//   "icon": "drawerFolder",
+//   "selected": true,
+
+//   "items":[
+//     {
+//     "id": 0,
+//     "name": "drw",
+//     "icon": "explorerIcon",
+//     "selected": true
+//   },
+//   {
+//     "id": 1,
+//     "name": "PSs",
+//     "icon": "explorerIcon",
+//     "selected": false
+//   },
+//   {
+//     "id": 2,
+//     "name": "ImageFiles5.0",
+//     "icon": "explorerIcon",
+//     "path" : "C:\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0",
+//     "selected": false
+//   }
+// ]
+// },
+// {
+//   "id": 1,
+//   "name": "Explorer",
+//   "icon": "../Images/explorerIcon.png",
+//   "selected": false,
+//   "items":[]
+// },
+// {
+//   "id": 2,
+//   "name": "Images",
+//   "icon": "../Images/explorerIcon.png",
+//   "selected": false,
+//   "items":[]
+// }
+// ]

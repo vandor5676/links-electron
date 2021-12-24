@@ -1,0 +1,79 @@
+[
+  {
+    "id": 0,
+    "name": "Links",
+    "icon": "drawerFolder",
+    "selected": true,
+    "items": [
+      {
+        "id": 0,
+        "name": "drw",
+        "icon": "explorerIcon",
+        "selected": true
+      },
+      {
+        "id": 1,
+        "name": "PSs",
+        "icon": "explorerIcon",
+        "selected": false
+      },
+      {
+        "id": 2,
+        "name": "ImageFiles5.0",
+        "icon": "explorerIcon",
+        "path": "C:\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0",
+        "selected": false
+      },
+      {
+        "id": 3,
+        "name": "bin",
+        "icon": "explorerIcon",
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\bin"
+      },
+      {
+        "id": 4,
+        "name": "Models",
+        "icon": "explorerIcon",
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\Models"
+      },
+      {
+        "id": 5,
+        "name": "Properties",
+        "icon": "explorerIcon",
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\Properties"
+      },
+      {
+        "id": 6,
+        "name": "Pages",
+        "icon": "explorerIcon",
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\Pages"
+      },
+      {
+        "id": 7,
+        "name": "Properties",
+        "icon": "explorerIcon",
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\Properties"
+      },
+      {
+        "id": 8,
+        "name": "PythonHelpers",
+        "icon": "explorerIcon",
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\PythonHelpers"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Explorer",
+    "icon": "../Images/explorerIcon.png",
+    "selected": false,
+    "items": []
+  },
+  {
+    "id": 2,
+    "name": "Images",
+    "icon": "../Images/explorerIcon.png",
+    "selected": false,
+    "items": []
+  }
+]

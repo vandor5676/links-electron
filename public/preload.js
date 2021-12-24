@@ -1,12 +1,16 @@
 const { ipcRenderer } = require('electron')
 const { contextBridge } = require('electron')
+const path = require('path')
 console.log("Preload script loaded")
 
 contextBridge.exposeInMainWorld('myAPI', {
   maximize: () => {ipcRenderer.send('maximize')},
   minimize: () => {ipcRenderer.send('minimize')},
-  getDrawerItems: () => {return ipcRenderer.sendSync('getDrawerItems')},
-  getMainItems: (arg) => {return ipcRenderer.sendSync('getMainItems',arg)},
+  getState: () => {return ipcRenderer.sendSync('getState')},
+  openFolder: (arg) => {ipcRenderer.sendSync('openFolder',arg)},
+  saveState: (state) => {
+    ipcRenderer.send('saveState', state)
+  }
 
 })
 

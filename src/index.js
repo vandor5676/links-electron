@@ -6,10 +6,8 @@ import App from './Elements/App';
 import reportWebVitals from './reportWebVitals';
 
 
-const drawerItems = window.myAPI.getDrawerItems()
-//const mainItems = window.myAPI.getMainItems(0)
+const drawerItems = window.myAPI.getState()
 
-// alert(window.myAPI.getDrawerItems())
 
 ReactDOM.render(
   <React.StrictMode>
