@@ -1,6 +1,7 @@
+import { getTemplate } from './menuTemplate.js';
 const path = require('path');
 
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const isDev = require('electron-is-dev');
 const ipc = ipcMain
 const fs = require('fs')
@@ -29,19 +30,15 @@ function createWindow() {
   const filePath = "./state.json"
   //functions for minimizing and maximizing
   ipc.on('maximize', (event) => {
-
     win.maximize()
     console.log('maximized');
   })
+
   ipc.on('minimize', () => {
     win.minimize()
   })
 
   ipc.on('getState', (event) => {
-    // const path ="D:\\Program Files (x86)\\Regclean pro\\Folder\\dhg\\drw\\top\\sciamano"
-    // require('child_process').exec(`start "" "${path}"`);
-  
-    // fs.writeFileSync(filePath, JSON.stringify(event, null, 2) , 'utf-8');
     var drawerItems = JSON.parse(fs.readFileSync(filePath));
     
     event.returnValue = drawerItems
@@ -61,6 +58,18 @@ function createWindow() {
     event.returnValue = 'ok'
   })
 
+  ipcMain.on('showContextMenu', (event) => {
+    const template = [
+      {
+        label: 'Menu Item 1',
+        click: () => { event.sender.send('context-menu-command', 'menu-item-1') }
+      },
+      { type: 'separator' },
+      { label: 'Menu Item 2', type: 'checkbox', checked: true }
+    ]
+    const menu = Menu.buildFromTemplate(template)
+    menu.popup(BrowserWindow.fromWebContents(event.sender))
+  })
   // ipcMain.on('ondragstart', (event, filePath) => {
   //   console.log("onDragStart")
   //   event.sender.startDrag({
@@ -93,47 +102,7 @@ app.on('activate', () => {
   }
 });
 
-
-// [{
-//   "id": 0,
-//   "name": "Links",
-//   "icon": "drawerFolder",
-//   "selected": true,
-
-//   "items":[
-//     {
-//     "id": 0,
-//     "name": "drw",
-//     "icon": "explorerIcon",
-//     "selected": true
-//   },
-//   {
-//     "id": 1,
-//     "name": "PSs",
-//     "icon": "explorerIcon",
-//     "selected": false
-//   },
-//   {
-//     "id": 2,
-//     "name": "ImageFiles5.0",
-//     "icon": "explorerIcon",
-//     "path" : "C:\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0",
-//     "selected": false
-//   }
-// ]
-// },
-// {
-//   "id": 1,
-//   "name": "Explorer",
-//   "icon": "../Images/explorerIcon.png",
-//   "selected": false,
-//   "items":[]
-// },
-// {
-//   "id": 2,
-//   "name": "Images",
-//   "icon": "../Images/explorerIcon.png",
-//   "selected": false,
-//   "items":[]
-// }
-// ]
+//right click menu 
+const template = getTemplate()
+const menu = Menu.buildFromTemplate(template)
+Menu.setApplicationMenu(menu)

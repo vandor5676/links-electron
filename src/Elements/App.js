@@ -15,6 +15,7 @@ document.addEventListener('build', function (e) { alert("my listener") }, false)
 function App(props) {
   console.log("App Page Loaded")
 
+  //set up listeners that run once 
   useEffect(() => {
     document.addEventListener('drop', (event) => {
       event.preventDefault();
@@ -23,6 +24,13 @@ function App(props) {
         // Using the path attribute to get absolute file path
         addItem(f.path)
       }
+
+      window.addEventListener('contextmenu', (e) => {
+        alert("contextmenu event!")
+        e.preventDefault()
+        window.myAPI.showContextMenu('showContextMenu')
+      })
+
     });
   }, [])
 

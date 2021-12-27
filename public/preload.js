@@ -10,6 +10,10 @@ contextBridge.exposeInMainWorld('myAPI', {
   openFolder: (arg) => {ipcRenderer.sendSync('openFolder',arg)},
   saveState: (state) => {
     ipcRenderer.send('saveState', state)
+  },
+  showContextMenu: ()=> 
+  {
+    ipcRenderer.sendSync('showContextMenu')
   }
 
 })
