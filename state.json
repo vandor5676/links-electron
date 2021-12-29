@@ -6,59 +6,28 @@
     "selected": true,
     "items": [
       {
-        "id": 0,
-        "name": "drw",
+        "id": 1640750605393,
+        "name": "Export",
         "icon": "explorerIcon",
-        "selected": true
+        "path": "D:\\\\Things\\PSs\\Export"
       },
       {
-        "id": 1,
-        "name": "PSs",
-        "icon": "explorerIcon",
-        "selected": false
-      },
-      {
-        "id": 2,
+        "id": 1640750620139,
         "name": "ImageFiles5.0",
         "icon": "explorerIcon",
-        "path": "C:\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0",
-        "selected": false
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0"
       },
       {
-        "id": 3,
-        "name": "bin",
+        "id": 1640750734235,
+        "name": "Configuration",
         "icon": "explorerIcon",
-        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\bin"
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\Configuration"
       },
       {
-        "id": 4,
-        "name": "Models",
+        "id": 1640750734245,
+        "name": "obj",
         "icon": "explorerIcon",
-        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\Models"
-      },
-      {
-        "id": 5,
-        "name": "Properties",
-        "icon": "explorerIcon",
-        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\Properties"
-      },
-      {
-        "id": 6,
-        "name": "Pages",
-        "icon": "explorerIcon",
-        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\Pages"
-      },
-      {
-        "id": 7,
-        "name": "Properties",
-        "icon": "explorerIcon",
-        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\Properties"
-      },
-      {
-        "id": 8,
-        "name": "PythonHelpers",
-        "icon": "explorerIcon",
-        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\PythonHelpers"
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\obj"
       }
     ]
   },

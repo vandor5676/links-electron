@@ -1,4 +1,4 @@
-import { getTemplate } from './menuTemplate.js';
+// import {getTemplate} from'./menuTemplate.mjs';
 const path = require('path');
 
 const { app, BrowserWindow, ipcMain, Menu } = require('electron');
@@ -40,18 +40,17 @@ function createWindow() {
 
   ipc.on('getState', (event) => {
     var drawerItems = JSON.parse(fs.readFileSync(filePath));
-    
+
     event.returnValue = drawerItems
     console.log("ipcMain: sendData ")
   })
 
   ipc.on('saveState', (event, arg) => {
-    fs.writeFileSync(filePath, JSON.stringify(arg, null, 2) , 'utf-8');
+    fs.writeFileSync(filePath, JSON.stringify(arg, null, 2), 'utf-8');
     console.log("ipcMain: setState ")
   })
 
-  ipc.on('openFolder',(event, arg)=>
-  {
+  ipc.on('openFolder', (event, arg) => {
     console.log("Open... ", arg)
     const filePath = arg
     require('child_process').exec(`start "" "${filePath}"`);
@@ -62,14 +61,19 @@ function createWindow() {
     const template = [
       {
         label: 'Menu Item 1',
-        click: () => { event.sender.send('context-menu-command', 'menu-item-1') }
+        click: () => { event.returnValue = 'Item1' }
       },
       { type: 'separator' },
-      { label: 'Menu Item 2', type: 'checkbox', checked: true }
+      {
+        label: 'Menu Item 2', type: 'checkbox', checked: true,
+        click: () => { event.returnValue = 'Item2' }
+      }
     ]
     const menu = Menu.buildFromTemplate(template)
     menu.popup(BrowserWindow.fromWebContents(event.sender))
+    
   })
+
   // ipcMain.on('ondragstart', (event, filePath) => {
   //   console.log("onDragStart")
   //   event.sender.startDrag({
@@ -79,8 +83,6 @@ function createWindow() {
   // })
 
 }
-
-
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -102,7 +104,108 @@ app.on('activate', () => {
   }
 });
 
-//right click menu 
-const template = getTemplate()
-const menu = Menu.buildFromTemplate(template)
-Menu.setApplicationMenu(menu)
+app.on('ready', () => {
+
+});
+
+// //right click menu 
+// const isMac = process.platform === 'darwin'
+
+// const template = [
+//   // { role: 'appMenu' }
+//   ...(isMac ? [{
+//     label: app.name,
+//     submenu: [
+//       { role: 'about' },
+//       { type: 'separator' },
+//       { role: 'services' },
+//       { type: 'separator' },
+//       { role: 'hide' },
+//       { role: 'hideOthers' },
+//       { role: 'unhide' },
+//       { type: 'separator' },
+//       { role: 'quit' }
+//     ]
+//   }] : []),
+//   // { role: 'fileMenu' }
+//   {
+//     label: 'File',
+//     submenu: [
+//       isMac ? { role: 'close' } : { role: 'quit' }
+//     ]
+//   },
+//   // { role: 'editMenu' }
+//   {
+//     label: 'Edit',
+//     submenu: [
+//       { role: 'undo' },
+//       { role: 'redo' },
+//       { type: 'separator' },
+//       { role: 'cut' },
+//       { role: 'copy' },
+//       { role: 'paste' },
+//       ...(isMac ? [
+//         { role: 'pasteAndMatchStyle' },
+//         { role: 'delete' },
+//         { role: 'selectAll' },
+//         { type: 'separator' },
+//         {
+//           label: 'Speech',
+//           submenu: [
+//             { role: 'startSpeaking' },
+//             { role: 'stopSpeaking' }
+//           ]
+//         }
+//       ] : [
+//         { role: 'delete' },
+//         { type: 'separator' },
+//         { role: 'selectAll' }
+//       ])
+//     ]
+//   },
+//   // { role: 'viewMenu' }
+//   {
+//     label: 'View',
+//     submenu: [
+//       { role: 'reload' },
+//       { role: 'forceReload' },
+//       { role: 'toggleDevTools' },
+//       { type: 'separator' },
+//       { role: 'resetZoom' },
+//       { role: 'zoomIn' },
+//       { role: 'zoomOut' },
+//       { type: 'separator' },
+//       { role: 'togglefullscreen' }
+//     ]
+//   },
+//   // { role: 'windowMenu' }
+//   {
+//     label: 'Window',
+//     submenu: [
+//       { role: 'minimize' },
+//       { role: 'zoom' },
+//       ...(isMac ? [
+//         { type: 'separator' },
+//         { role: 'front' },
+//         { type: 'separator' },
+//         { role: 'window' }
+//       ] : [
+//         { role: 'close' }
+//       ])
+//     ]
+//   },
+//   {
+//     role: 'help',
+//     submenu: [
+//       {
+//         label: 'Learn More',
+//         click: async () => {
+//           const { shell } = require('electron')
+//           await shell.openExternal('https://electronjs.org')
+//         }
+//       }
+//     ]
+//   }
+// ]
+// const menu = Menu.buildFromTemplate(template)
+// Menu.setApplicationMenu(menu)

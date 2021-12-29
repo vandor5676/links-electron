@@ -1,5 +1,5 @@
 const { app, } = require('electron')
-export function getTemplate()
+function getTemplate()
 {
 
     const isMac = process.platform === 'darwin'
