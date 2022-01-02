@@ -18,16 +18,34 @@
         "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0"
       },
       {
-        "id": 1640750734235,
-        "name": "Configuration",
+        "id": 1640924209408,
+        "name": "drw",
         "icon": "explorerIcon",
-        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\Configuration"
+        "path": "D:\\\\Program Files (x86)\\Regclean pro\\Folder\\dhg\\drw"
       },
       {
-        "id": 1640750734245,
-        "name": "obj",
+        "id": 1640927104081,
+        "name": "Properties",
         "icon": "explorerIcon",
-        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\obj"
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\Properties"
+      },
+      {
+        "id": 1640927104084,
+        "name": "PythonHelpers",
+        "icon": "explorerIcon",
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\PythonHelpers"
+      },
+      {
+        "id": 1640927104086,
+        "name": ".vscode",
+        "icon": "explorerIcon",
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\.vscode"
+      },
+      {
+        "id": 1640927104088,
+        "name": "bin",
+        "icon": "explorerIcon",
+        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\bin"
       }
     ]
   },

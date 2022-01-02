@@ -10,20 +10,6 @@ const useContextMenu = () => {
     (event) => {
       event.preventDefault();
       setAnchorPoint({ x: event.pageX, y: event.pageY }); 
-      const index = ()=>{for(let index = 0; index < event.path.length; index++) {
-        if(typeof event.path[index].id === 'string')
-        {
-          continue
-        }        
-        if (event.path[index].id.includes('MainContentItem')) {
-          return index
-        }      
-      }}
-      // const index = event.path.forEach((element, i) => {
-      //   if (typeof element.id === 'string' && element.id.includes('MainContentItem')) {
-      //     return i
-      //   }
-      // });
       setShow(true);
       // document.getElementById().addEventListener( )
     },

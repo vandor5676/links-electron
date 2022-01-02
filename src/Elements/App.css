@@ -14,19 +14,23 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+/* Hide scrollbar for Chrome, Safari and Opera */
+.keep-scrolling::-webkit-scrollbar {
+  display: none;
+}
 .app-body {
   background-color: var(--color2);
-  min-height: 100%;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
   flex: 1 0 auto;
   z-index: 102;
   align-items: flex-start;
+  flex-direction: column;
 }
 
 .App-link {
@@ -112,14 +116,33 @@ img {
 }
 
 /* ======================================== */
+
 /* List Items ================================ */
+.list-wrapper-relative
+{
+position: relative;
+flex: 1 0 auto;
+width: 100%;
+}
+
 .list-wrapper
 {
-
-height: 100%;
-width: 82%;
-padding: 0px 0px 0px 37px;
+position: absolute;
+bottom: 0;
+top: 0;
+left: 0;
+right: 0;
+/* height: 95vh; */
+/* width: 82%; */
+padding: 0px 37px 0px 37px;
+overflow-y: scroll;
+user-select: none
 }
+.list-wrapper::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
 .list-item:hover
 {
 background-color: #011627;
@@ -131,7 +154,6 @@ border-radius: 10px;
   height: 70px;
   display: flex;
   align-items: center;
-  user-select: none
 }
 .list-icon
 {
