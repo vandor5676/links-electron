@@ -54,16 +54,16 @@ function App(props) {
     const name = item.substring(item.lastIndexOf("\\") + 1, item.length)
     const id = Date.now()
 
-    state.drawerItems[selectedDrawerItem].items.push({ id: id, name: name, icon: 'explorerIcon', path: item, })
-    setState({ drawerItems: state.drawerItems })
-    window.myAPI.saveState(state.drawerItems)
+    state[selectedDrawerItem].items.push({ id: id, name: name, icon: 'explorerIcon', path: item, })
+    setState([...state])
+    window.myAPI.saveState(state)
   }
   //removes item in state and saves state locally
   function removeItem() {
-    const index = state.drawerItems[selectedDrawerItem].items.findIndex(x => x.id === selectedMainContentItemID);
-    state.drawerItems[selectedDrawerItem].items.splice(index, 1)
-    setState({ drawerItems: state.drawerItems })
-    window.myAPI.saveState(state.drawerItems)
+    const index = state[selectedDrawerItem].items.findIndex(x => x.id === selectedMainContentItemID);
+    state[selectedDrawerItem].items.splice(index, 1)
+    setState([...state])
+    window.myAPI.saveState(state)
     selectedMainContentItemID = null;
   }
 
@@ -71,19 +71,21 @@ function App(props) {
 
   // used to select different drawer items
   const toggleSelected = index => {
-    let state = window.myAPI.getOpenExplorers()
-    let copy = state.drawerItems
+    let newState = state
+    if(index === 1) {newState = window.myAPI.getOpenExplorers()}
+
+    let copy = newState
     copy.forEach(element => {
       element.selected = false
     });
     copy[index].selected = true
     setSelectedDrawerItem(index)
-    setState({ drawerItems: copy })
+    setState(copy)
   }
 
   // hook for all the items that can be displayed (drawer items and main items)
   const [state, setState] = useState(
-    { drawerItems: props.drawerItems }
+    props.state
   )
   const [selectedDrawerItem, setSelectedDrawerItem] = useState(0)
 
@@ -108,7 +110,7 @@ function App(props) {
         <div className="top-spacer"> </div>
 
         {/* populate Drawer */}
-        {state.drawerItems.map((item) => {
+        {state.map((item) => {
           return <div key={item.id} onClick={() => toggleSelected(item.id)} className={item.selected ? "drawerItemWrapperSelected" : "drawerItemWrapper"}>
             <img src={getIcon(item.icon)} className={item.selected ? "drawerIconSelected" : "drawerIcon"} alt="logo" />
             <div className="drawerItemText">{`${item.name}`}</div>
@@ -132,13 +134,13 @@ function App(props) {
   function populateMainItems(state) {
     //find selected //use some?
     let selectedIndex;
-    state.drawerItems.forEach(element => {
+    state.forEach(element => {
       if (element.selected === true) {  
         selectedIndex = element.id
       }
     });
     // return main content items
-    return state.drawerItems[selectedIndex].items.map((item) => {
+    return state[selectedIndex].items.map((item) => {
       return <div id={`MainContentItem${item.id}`} key={item.id} >
         <div className="list-item" onContextMenu={() => { selectedMainContentItemID = item.id }} onClick={() => window.myAPI.openFolder(item.path)}>
           <img className="list-icon" src={getIcon(item.icon)} alt="Folder Icon" ></img>

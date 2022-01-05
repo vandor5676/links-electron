@@ -49,7 +49,7 @@ function createWindow() {
   })
 
   //
-  //read the state and add the open explorers to the explorer tab and return the state
+  //read the state and add the open file explorers to the explorer tab and return the state
   //
   ipc.on('getOpenExplorers', async (event)=>
   {
@@ -65,7 +65,7 @@ function createWindow() {
       {
         let name = newPath.split("/")
                           .pop()
-                          .replace('%20', ' ')
+                          .replaceAll('%20', ' ')
         state[1].items.push(createItem(name,newPath))//add new item
       }
     });
@@ -76,23 +76,9 @@ function createWindow() {
   })
 
   //
-  //save the received state and add the open explorers to the explorer tab
+  //save the received state
   //
   ipc.on('saveState', async (event, arg) => {
-    //get paths of open explorers and explorers in explorer tab as arrays
-    let openExplorers = await getOpenExplorers()
-    let explorerTabItems = arg[1].items
-   
-    //if a path isn't in the explorerTab add it
-   openExplorers.forEach(newPath => {
-      if(explorerTabItems.filter((item)=>{return item.path === newPath}).length === 0) //check if path is not already in the explorer tab
-      {
-        let name = newPath.split("/")
-                          .pop()
-                          .replace('%20', ' ')
-        arg[1].items.push(createItem(name,newPath))//add new item
-      }
-    });
     fs.writeFileSync(filePath, JSON.stringify(arg, null, 2), 'utf-8');
     console.log("ipcMain: setState ")
   })
@@ -104,22 +90,6 @@ function createWindow() {
     event.returnValue = 'ok'
   })
 
-  ipcMain.on('showContextMenu', (event) => {
-    const template = [
-      {
-        label: 'Menu Item 1',
-        click: () => { event.returnValue = 'Item1' }
-      },
-      { type: 'separator' },
-      {
-        label: 'Menu Item 2', type: 'checkbox', checked: true,
-        click: () => { event.returnValue = 'Item2' }
-      }
-    ]
-    const menu = Menu.buildFromTemplate(template)
-    menu.popup(BrowserWindow.fromWebContents(event.sender))
-
-  })
 
   //C:\\Things\\c#\\getOpenExplorers\\getOpenExplorers\\bin\\Debug\net6.0\\getOpenExplorers.exe
   //returns a list of all open explorer paths

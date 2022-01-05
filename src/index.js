@@ -6,13 +6,13 @@ import App from './Elements/App';
 import reportWebVitals from './reportWebVitals';
 
 
-const drawerItems = window.myAPI.getState()
+const state = window.myAPI.getState()
 
 
 ReactDOM.render(
   <React.StrictMode>
     <TitleBar/>
-    <App drawerItems = {drawerItems} />
+    <App state = {state} />
   </React.StrictMode>,
   document.getElementById('root')
 );

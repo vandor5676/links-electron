@@ -3,7 +3,7 @@
     "id": 0,
     "name": "Links",
     "icon": "drawerFolder",
-    "selected": true,
+    "selected": false,
     "items": [
       {
         "id": 1640750605393,
@@ -28,18 +28,6 @@
         "name": "Properties",
         "icon": "explorerIcon",
         "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\Properties"
-      },
-      {
-        "id": 1640927104084,
-        "name": "PythonHelpers",
-        "icon": "explorerIcon",
-        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\PythonHelpers"
-      },
-      {
-        "id": 1640927104086,
-        "name": ".vscode",
-        "icon": "explorerIcon",
-        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\.vscode"
       }
     ]
   },
@@ -47,7 +35,7 @@
     "id": 1,
     "name": "Explorer",
     "icon": "../Images/explorerIcon.png",
-    "selected": false,
+    "selected": true,
     "items": [
       {
         "id": 41.13618322196839,
@@ -116,16 +104,16 @@
         "path": "file:///C:/Things/c%23/getOpenExplorers/getOpenExplorers/bin/Debug/net6.0"
       },
       {
-        "id": 41.381005253593564,
-        "name": "Artist -%20Tsuaii",
+        "id": 40.59554659872978,
+        "name": "Properties",
         "icon": "explorerIcon",
-        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw/top/Artist%20-%20Tsuaii"
+        "path": "file:///C:/Things/c%23/ImageFilesVSCode/ImageFiles5.0/Properties"
       },
       {
-        "id": 40.62198428255418,
-        "name": "vid",
+        "id": 41.18124558499599,
+        "name": "Artist - Tsuaii",
         "icon": "explorerIcon",
-        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw/Face/vid"
+        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw/top/Artist%20-%20Tsuaii"
       }
     ]
   },
