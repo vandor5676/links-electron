@@ -40,12 +40,6 @@
         "name": ".vscode",
         "icon": "explorerIcon",
         "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\.vscode"
-      },
-      {
-        "id": 1640927104088,
-        "name": "bin",
-        "icon": "explorerIcon",
-        "path": "C:\\\\Things\\c#\\ImageFilesVSCode\\ImageFiles5.0\\bin"
       }
     ]
   },
@@ -54,7 +48,86 @@
     "name": "Explorer",
     "icon": "../Images/explorerIcon.png",
     "selected": false,
-    "items": []
+    "items": [
+      {
+        "id": 41.13618322196839,
+        "name": "Release",
+        "icon": "explorerIcon",
+        "path": "file:///C:/Things/c%23/SaveExplorerWpf/bin/Release"
+      },
+      {
+        "id": 41.37462989939831,
+        "name": "10",
+        "icon": "explorerIcon",
+        "path": "file:///D:/Things/PSs/Export/10"
+      },
+      {
+        "id": 41.05170768887605,
+        "name": "BOL",
+        "icon": "explorerIcon",
+        "path": "file:///C:/Things/backup/BOL"
+      },
+      {
+        "id": 40.849582824208035,
+        "name": "skin tones",
+        "icon": "explorerIcon",
+        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw/skin%20tones"
+      },
+      {
+        "id": 40.96367260031191,
+        "name": "PSs",
+        "icon": "explorerIcon",
+        "path": "file:///D:/Things/PSs"
+      },
+      {
+        "id": 41.081565260286126,
+        "name": "Export",
+        "icon": "explorerIcon",
+        "path": "file:///D:/Things/PSs/Export"
+      },
+      {
+        "id": 41.22086484619261,
+        "name": "Face",
+        "icon": "explorerIcon",
+        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw/Face"
+      },
+      {
+        "id": 41.325730317239824,
+        "name": "dhg",
+        "icon": "explorerIcon",
+        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg"
+      },
+      {
+        "id": 41.39518071788241,
+        "name": "ImageFiles5.0",
+        "icon": "explorerIcon",
+        "path": "file:///C:/Things/c%23/ImageFilesVSCode/ImageFiles5.0"
+      },
+      {
+        "id": 41.51736080134147,
+        "name": "drw",
+        "icon": "explorerIcon",
+        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw"
+      },
+      {
+        "id": 40.94103834988011,
+        "name": "net6.0",
+        "icon": "explorerIcon",
+        "path": "file:///C:/Things/c%23/getOpenExplorers/getOpenExplorers/bin/Debug/net6.0"
+      },
+      {
+        "id": 41.381005253593564,
+        "name": "Artist -%20Tsuaii",
+        "icon": "explorerIcon",
+        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw/top/Artist%20-%20Tsuaii"
+      },
+      {
+        "id": 40.62198428255418,
+        "name": "vid",
+        "icon": "explorerIcon",
+        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw/Face/vid"
+      }
+    ]
   },
   {
     "id": 2,

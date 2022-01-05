@@ -5,6 +5,7 @@ const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const isDev = require('electron-is-dev');
 const ipc = ipcMain
 const fs = require('fs')
+const exec = require('child_process').exec;
 
 
 function createWindow() {
@@ -41,13 +42,57 @@ function createWindow() {
   })
 
   ipc.on('getState', (event) => {
-    var drawerItems = JSON.parse(fs.readFileSync(filePath));
+    var state = JSON.parse(fs.readFileSync(filePath));
 
-    event.returnValue = drawerItems
-    console.log("ipcMain: sendData ")
+    event.returnValue = state
+    console.log("ipcMain: getState ")
   })
 
-  ipc.on('saveState', (event, arg) => {
+  //
+  //read the state and add the open explorers to the explorer tab and return the state
+  //
+  ipc.on('getOpenExplorers', async (event)=>
+  {
+    var state = JSON.parse(fs.readFileSync(filePath));
+
+    //get paths of open explorers and explorers in explorer tab as arrays
+    let openExplorers = await getOpenExplorers()
+    let explorerTabItems = state[1].items
+   
+    //if a path isn't in the explorerTab add it
+   openExplorers.forEach(newPath => {
+      if(explorerTabItems.filter((item)=>{return item.path === newPath}).length === 0) //check if path is not already in the explorer tab
+      {
+        let name = newPath.split("/")
+                          .pop()
+                          .replace('%20', ' ')
+        state[1].items.push(createItem(name,newPath))//add new item
+      }
+    });
+    fs.writeFileSync(filePath, JSON.stringify(state, null, 2), 'utf-8');
+
+    event.returnValue = state
+    console.log("ipcMain: getOpenExplorers ")
+  })
+
+  //
+  //save the received state and add the open explorers to the explorer tab
+  //
+  ipc.on('saveState', async (event, arg) => {
+    //get paths of open explorers and explorers in explorer tab as arrays
+    let openExplorers = await getOpenExplorers()
+    let explorerTabItems = arg[1].items
+   
+    //if a path isn't in the explorerTab add it
+   openExplorers.forEach(newPath => {
+      if(explorerTabItems.filter((item)=>{return item.path === newPath}).length === 0) //check if path is not already in the explorer tab
+      {
+        let name = newPath.split("/")
+                          .pop()
+                          .replace('%20', ' ')
+        arg[1].items.push(createItem(name,newPath))//add new item
+      }
+    });
     fs.writeFileSync(filePath, JSON.stringify(arg, null, 2), 'utf-8');
     console.log("ipcMain: setState ")
   })
@@ -73,16 +118,29 @@ function createWindow() {
     ]
     const menu = Menu.buildFromTemplate(template)
     menu.popup(BrowserWindow.fromWebContents(event.sender))
-    
+
   })
 
-  // ipcMain.on('ondragstart', (event, filePath) => {
-  //   console.log("onDragStart")
-  //   event.sender.startDrag({
-  //     file: path.join(__dirname, filePath),
-  //     icon: "iconName",
-  //   })
-  // })
+  //C:\\Things\\c#\\getOpenExplorers\\getOpenExplorers\\bin\\Debug\net6.0\\getOpenExplorers.exe
+  //returns a list of all open explorer paths
+   function getOpenExplorers() {
+    return new Promise((resolve)=>{ 
+      exec(`C:\\Things\\c#\\getOpenExplorers\\getOpenExplorers\\bin\\Debug\\net6.0\\getOpenExplorers.exe`, function (err, stdout, stderr) {
+      console.log(`stderr: ${stderr} err: ${err}`)
+      const paths = stdout.split('\n')
+                          .filter((item)=>{ return(item !='\r' && item != '') })
+                          .map((item)=>{return item.replace('\r','')})
+      resolve(paths)
+    });
+  })
+  }
+  //returns a item that can be added to the state
+  function createItem(name, path, icon = "explorerIcon")
+  {
+    let id = Math.log2(Date.now()) + Math.random();
+    return({id,name,icon,path })
+  }
+
 
 }
 
@@ -109,105 +167,3 @@ app.on('activate', () => {
 app.on('ready', () => {
 
 });
-
-// //right click menu 
-// const isMac = process.platform === 'darwin'
-
-// const template = [
-//   // { role: 'appMenu' }
-//   ...(isMac ? [{
-//     label: app.name,
-//     submenu: [
-//       { role: 'about' },
-//       { type: 'separator' },
-//       { role: 'services' },
-//       { type: 'separator' },
-//       { role: 'hide' },
-//       { role: 'hideOthers' },
-//       { role: 'unhide' },
-//       { type: 'separator' },
-//       { role: 'quit' }
-//     ]
-//   }] : []),
-//   // { role: 'fileMenu' }
-//   {
-//     label: 'File',
-//     submenu: [
-//       isMac ? { role: 'close' } : { role: 'quit' }
-//     ]
-//   },
-//   // { role: 'editMenu' }
-//   {
-//     label: 'Edit',
-//     submenu: [
-//       { role: 'undo' },
-//       { role: 'redo' },
-//       { type: 'separator' },
-//       { role: 'cut' },
-//       { role: 'copy' },
-//       { role: 'paste' },
-//       ...(isMac ? [
-//         { role: 'pasteAndMatchStyle' },
-//         { role: 'delete' },
-//         { role: 'selectAll' },
-//         { type: 'separator' },
-//         {
-//           label: 'Speech',
-//           submenu: [
-//             { role: 'startSpeaking' },
-//             { role: 'stopSpeaking' }
-//           ]
-//         }
-//       ] : [
-//         { role: 'delete' },
-//         { type: 'separator' },
-//         { role: 'selectAll' }
-//       ])
-//     ]
-//   },
-//   // { role: 'viewMenu' }
-//   {
-//     label: 'View',
-//     submenu: [
-//       { role: 'reload' },
-//       { role: 'forceReload' },
-//       { role: 'toggleDevTools' },
-//       { type: 'separator' },
-//       { role: 'resetZoom' },
-//       { role: 'zoomIn' },
-//       { role: 'zoomOut' },
-//       { type: 'separator' },
-//       { role: 'togglefullscreen' }
-//     ]
-//   },
-//   // { role: 'windowMenu' }
-//   {
-//     label: 'Window',
-//     submenu: [
-//       { role: 'minimize' },
-//       { role: 'zoom' },
-//       ...(isMac ? [
-//         { type: 'separator' },
-//         { role: 'front' },
-//         { type: 'separator' },
-//         { role: 'window' }
-//       ] : [
-//         { role: 'close' }
-//       ])
-//     ]
-//   },
-//   {
-//     role: 'help',
-//     submenu: [
-//       {
-//         label: 'Learn More',
-//         click: async () => {
-//           const { shell } = require('electron')
-//           await shell.openExternal('https://electronjs.org')
-//         }
-//       }
-//     ]
-//   }
-// ]
-// const menu = Menu.buildFromTemplate(template)
-// Menu.setApplicationMenu(menu)

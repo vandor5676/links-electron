@@ -3,7 +3,7 @@ const path = require('path')
 console.log("Preload script loaded")
 
 contextBridge.exposeInMainWorld('myAPI', {
-  
+  getOpenExplorers: () => { return ipcRenderer.sendSync('getOpenExplorers')},
   maximize: () => {ipcRenderer.send('maximize')},
   minimize: () => {ipcRenderer.send('minimize')},
   getState: () => {return ipcRenderer.sendSync('getState')},

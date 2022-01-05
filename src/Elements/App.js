@@ -1,13 +1,12 @@
 import logo from '../svg/logo.svg';
 import drawerFolder from '../svg/drawerFolder.svg';
 // shape for the top and bottom of the drawer
-import explorerIcon from '../Images/explorerIcon.png';
+import explorerIcon from '../Images/explorerIcon50px.png';
 import drawerStylisticShape from '../Images/Polygon.png';
 import './App.css';
 import './Menu.css';
 import Menu from "./Menu";
 import { useState, useEffect, useRef } from 'react';
-
 
 function App(props) {
   console.log("App Page Loaded")
@@ -29,6 +28,8 @@ function App(props) {
       e.preventDefault()
       //alert(window.myAPI.showContextMenu('showContextMenu'))
     })
+
+    //drag enter leave over used for dragging in a file to the main content area
     listWrapper.current.addEventListener('dragenter', (e) => {
       e.preventDefault()
       console.log(`dragenter`)
@@ -42,23 +43,17 @@ function App(props) {
       console.log(`dragover`)
     })
 
-    // listWrapper.current.addEventListener('drop', (event)=>
-    // {
-    //  alert("drop")
-    //   // event.preventDefault();
-    //   // event.stopPropagation();
-    //   // for (const f of event.dataTransfer.files) {
-    //   //   // Using the path attribute to get absolute file path
-    //   //   addItem(f.path)
-    //   // }
-    // })
   }, [])
+
+  //used to access listWrapper in the on mount lifecycle event 
   const listWrapper = useRef(null)
+
   //adds new item to state and saves state locally
   function addItem(item) {
     item = item.replace("\\", "\\\\")//escape the slashes
     const name = item.substring(item.lastIndexOf("\\") + 1, item.length)
     const id = Date.now()
+
     state.drawerItems[selectedDrawerItem].items.push({ id: id, name: name, icon: 'explorerIcon', path: item, })
     setState({ drawerItems: state.drawerItems })
     window.myAPI.saveState(state.drawerItems)
@@ -76,6 +71,7 @@ function App(props) {
 
   // used to select different drawer items
   const toggleSelected = index => {
+    let state = window.myAPI.getOpenExplorers()
     let copy = state.drawerItems
     copy.forEach(element => {
       element.selected = false
@@ -127,9 +123,6 @@ function App(props) {
             {populateMainItems(state)}
           </div>
         </div>
-
-        {/* <input id="dropInput" type="file" id="fileElem" multiple accept="image/*" class="visually-hidden"></input> */}
-        {/* <label for="fileElem">Select some files</label> */}
 
       </header>
       <Menu state={state} removeItem={removeItem} />
