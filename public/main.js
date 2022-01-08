@@ -6,7 +6,8 @@ const isDev = require('electron-is-dev');
 const ipc = ipcMain
 const fs = require('fs')
 const exec = require('child_process').exec;
-
+const { dirname } = require('path');
+const appDir = dirname(require.main.path);
 
 function createWindow() {
   // Create the browser window.
@@ -53,10 +54,19 @@ function createWindow() {
   //
   ipc.on('getOpenExplorers', async (event)=>
   {
+    const state = await addNewExplorersToState()
+
+    event.returnValue = state
+    console.log("ipcMain: getOpenExplorers ")
+  })
+
+  //adds new open explorers to the state and returns the state
+  async function addNewExplorersToState()
+  {
     var state = JSON.parse(fs.readFileSync(filePath));
 
     //get paths of open explorers and explorers in explorer tab as arrays
-    let openExplorers = await getOpenExplorers()
+    let openExplorers = await getOpenExplorersList()
     let explorerTabItems = state[1].items
    
     //if a path isn't in the explorerTab add it
@@ -70,10 +80,8 @@ function createWindow() {
       }
     });
     fs.writeFileSync(filePath, JSON.stringify(state, null, 2), 'utf-8');
-
-    event.returnValue = state
-    console.log("ipcMain: getOpenExplorers ")
-  })
+    return state
+  }
 
   //
   //save the received state
@@ -83,20 +91,46 @@ function createWindow() {
     console.log("ipcMain: setState ")
   })
 
+  //
+  //opens a folder or a array of folders
+  //
   ipc.on('openFolder', (event, arg) => {
     console.log("Open... ", arg)
     const filePath = arg
-    require('child_process').exec(`start "" "${filePath}"`);
+    if( typeof filePath === "string")
+    {
+      require('child_process').exec(`start "" "${filePath}"`);
+    }
+    else if (typeof filePath === 'object')
+    {
+      arg.forEach(element => {
+        require('child_process').exec(`start "" "${element.path}"`);
+      });
+    }
+    else{
+      console.log(`ipcMain: openFolder: unrecognized argument type: ${typeof arg} `)
+    }
     event.returnValue = 'ok'
   })
 
+  //
+  //clear the explorer tab and reload the open explorer 
+  //
+  ipc.on('refreshExplorerTab',async (event, arg)=>{
+    let state = arg
+    state[1].items = []
+    saveState(state)
+    state = await addNewExplorersToState()
+    event.returnValue = state
+    console.log("ipcMain: refreshExplorerTab")
+  })
 
-  //C:\\Things\\c#\\getOpenExplorers\\getOpenExplorers\\bin\\Debug\net6.0\\getOpenExplorers.exe
+
   //returns a list of all open explorer paths
-   function getOpenExplorers() {
+   function getOpenExplorersList() {
     return new Promise((resolve)=>{ 
-      exec(`C:\\Things\\c#\\getOpenExplorers\\getOpenExplorers\\bin\\Debug\\net6.0\\getOpenExplorers.exe`, function (err, stdout, stderr) {
-      console.log(`stderr: ${stderr} err: ${err}`)
+      exec(`${appDir}\\helperPrograms\\getOpenExplorers\\getOpenExplorers.exe`, function (err, stdout, stderr) {
+      if(stderr !== "" || err !== null)console.log(`Errors: stderr: ${stderr} err: ${err}`)
       const paths = stdout.split('\n')
                           .filter((item)=>{ return(item !='\r' && item != '') })
                           .map((item)=>{return item.replace('\r','')})
@@ -109,6 +143,11 @@ function createWindow() {
   {
     let id = Math.log2(Date.now()) + Math.random();
     return({id,name,icon,path })
+  }
+
+  function saveState(state)
+  {
+    fs.writeFileSync(filePath, JSON.stringify(state, null, 2), 'utf-8');
   }
 
 

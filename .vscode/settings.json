@@ -21,5 +21,8 @@
     "peacock.color": "#593217",
     "cSpell.words": [
         "Titlebar"
-    ]
+    ],
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    }
 }

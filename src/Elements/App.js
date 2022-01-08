@@ -1,8 +1,10 @@
 import logo from '../svg/logo.svg';
 import drawerFolder from '../svg/drawerFolder.svg';
 // shape for the top and bottom of the drawer
-import explorerIcon from '../Images/explorerIcon50px.png';
+import explorerIcon from '../Images/explorerIcon50pxNearestNeighbor.png';
 import drawerStylisticShape from '../Images/Polygon.png';
+import floatButtonReload from '../Images/floatButtonReloadIcon.png';
+import floatButtonOpenAll from '../Images/floatButtonOpenAllIcon.png';
 import './App.css';
 import './Menu.css';
 import Menu from "./Menu";
@@ -72,7 +74,7 @@ function App(props) {
   // used to select different drawer items
   const toggleSelected = index => {
     let newState = state
-    if(index === 1) {newState = window.myAPI.getOpenExplorers()}
+    if (index === 1) { newState = window.myAPI.getOpenExplorers() }
 
     let copy = newState
     copy.forEach(element => {
@@ -103,6 +105,16 @@ function App(props) {
     }
   }
 
+  //Clear the explorer tab and add all the open explorers to it
+  function refresh() {
+    const stateCopy = window.myAPI.refreshExplorerTab(state)
+    setState([...stateCopy])
+  }
+
+  function openAllExplorers() {
+    window.myAPI.openFolder(state[selectedDrawerItem].items)
+  }
+
   return (
     <div className="App" id='app'>
       <div className="Drawer">
@@ -125,6 +137,9 @@ function App(props) {
             {populateMainItems(state)}
           </div>
         </div>
+        {/* float buttons */}
+        {returnFloatButtons()}
+
 
       </header>
       <Menu state={state} removeItem={removeItem} />
@@ -135,7 +150,7 @@ function App(props) {
     //find selected //use some?
     let selectedIndex;
     state.forEach(element => {
-      if (element.selected === true) {  
+      if (element.selected === true) {
         selectedIndex = element.id
       }
     });
@@ -151,6 +166,27 @@ function App(props) {
         </div>
       </div>
     })
+  }
+
+  function returnFloatButtons() {
+    if (selectedDrawerItem === 1) {
+      return <div>
+        <div className="float-button" id="refresh" onClick={() => { refresh() }}>
+          <img src={floatButtonReload} alt="open all" />
+        </div>
+        <div className="float-button" id="open-all" onClick={() => { openAllExplorers() }}>
+          <img src={floatButtonOpenAll} alt="reload" />
+        </div>
+      </div>
+    }
+    else {
+      return <div>
+        <div className="float-button" id="open-all" onClick={() => { openAllExplorers() }}>
+          <img src={floatButtonOpenAll} alt="reload" />
+        </div>
+      </div>
+    }
+
   }
 }
 
