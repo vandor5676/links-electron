@@ -19,6 +19,8 @@ I like to use it for
 
 ![Mockup](https://github.com/vandor5676/links-electron/blob/main/readMeMedia/mockup.png "")
 
+# Run: `npm run dev` to start the app
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
