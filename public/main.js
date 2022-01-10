@@ -177,3 +177,42 @@ app.on('activate', () => {
 app.on('ready', () => {
 
 });
+
+//create state.json if it doesn't already exist 
+fs.writeFile('state.json', `[
+  {
+    "id": 0,
+    "name": "Links",
+    "icon": "drawerFolder",
+    "selected": true,
+    "items": []
+  },
+  {
+    "id": 1,
+    "name": "Explorer",
+    "icon": "../Images/explorerIcon.png",
+    "selected": false,
+    "items": [
+      
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Images",
+    "icon": "../Images/explorerIcon.png",
+    "selected": false,
+    "items": []
+  }
+]`,{flag: 'wx'}, function (err) {
+  if (err && err.code === 'EEXIST')
+  {
+    console.log('main.js: Found state.json');
+  }
+  else if(err === null)
+  {
+    console.log('Creating state.json');
+  }
+  else{
+    console.log(err)
+  }
+});

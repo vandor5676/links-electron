@@ -1,3 +1,22 @@
+# Links Electron.
+This application saves and opens Windows file explorers that you have open on your computer.
+
+I like to use it for
+
+* Keeping links I frequently use
+
+* Open explorers that I had open before a shutdown or restart
+
+### `Move links in that you frequently use`
+
+![Move links in](https://github.com/vandor5676/links-electron/readMeMedia/links1.gif "")
+
+### `Keep track of open Explorers `
+
+![Keep track of open Explorers](https://github.com/vandor5676/links-electron/readMeMedia/links2.gif "")
+
+# Add links that you use freq
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
