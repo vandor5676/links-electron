@@ -9,11 +9,11 @@ I like to use it for
 
 ### `Move links in that you frequently use`
 
-![Move links in](https://github.com/vandor5676/links-electron/readMeMedia/links1.gif "")
+![Move links in](https://github.com/vandor5676/links-electron/blob/main/readMeMedia/links1.gif "")
 
 ### `Keep track of open Explorers `
 
-![Keep track of open Explorers](https://github.com/vandor5676/links-electron/readMeMedia/links2.gif "")
+![Keep track of open Explorers](https://github.com/vandor5676/links-electron/blob/main/readMeMedia/links1.gif "")
 
 # Add links that you use freq
 
