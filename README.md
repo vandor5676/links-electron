@@ -13,7 +13,7 @@ I like to use it for
 
 ### `Keep track of open Explorers `
 
-![Keep track of open Explorers](https://github.com/vandor5676/links-electron/blob/main/readMeMedia/links1.gif "")
+![Keep track of open Explorers](https://github.com/vandor5676/links-electron/blob/main/readMeMedia/links2.gif "")
 
 # Add links that you use freq
 
