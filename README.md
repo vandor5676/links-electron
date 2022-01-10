@@ -1,5 +1,6 @@
 # Links Electron.
-This application saves and opens Windows file explorers that you have open on your computer.
+This application saves and opens Windows file explorers that you have open on your computer.\
+The goal of this project was to help me learn Electron, React and Node.js. i also got some more practice with JavaScript, CSS and designing mockups in Adobe Xd.
 
 I like to use it for
 
@@ -15,7 +16,8 @@ I like to use it for
 
 ![Keep track of open Explorers](https://github.com/vandor5676/links-electron/blob/main/readMeMedia/links2.gif "")
 
-# Add links that you use freq
+
+![Mockup](https://github.com/vandor5676/links-electron/blob/main/readMeMedia/mockup.png "")
 
 # Getting Started with Create React App
 
