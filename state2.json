@@ -3,7 +3,7 @@
     "id": 0,
     "name": "Links",
     "icon": "drawerFolder",
-    "selected": true,
+    "selected": false,
     "items": [
       {
         "id": 1640750605393,
@@ -30,10 +30,16 @@
         "path": "D:\\\\Program Files (x86)\\Regclean pro\\Folder\\dhg"
       },
       {
-        "id": 1641601373484,
+        "id": 1641608077324,
         "name": "TempState",
         "icon": "explorerIcon",
         "path": "C:\\\\Users\\Shane\\AppData\\Local\\Packages\\Microsoft.ScreenSketch_8wekyb3d8bbwe\\TempState"
+      },
+      {
+        "id": 1641610972262,
+        "name": "PSs",
+        "icon": "explorerIcon",
+        "path": "D:\\\\Things\\PSs"
       }
     ]
   },
@@ -41,121 +47,115 @@
     "id": 1,
     "name": "Explorer",
     "icon": "../Images/explorerIcon.png",
-    "selected": false,
+    "selected": true,
     "items": [
       {
-        "id": 40.58987402812196,
-        "name": "Release",
-        "icon": "explorerIcon",
-        "path": "file:///C:/Things/c%23/SaveExplorerWpf/bin/Release"
-      },
-      {
-        "id": 41.48808055795815,
+        "id": 41.10822555480382,
         "name": "10",
         "icon": "explorerIcon",
         "path": "file:///D:/Things/PSs/Export/10"
       },
       {
-        "id": 41.01331523774256,
+        "id": 40.66610719339379,
         "name": "BOL",
         "icon": "explorerIcon",
         "path": "file:///C:/Things/backup/BOL"
       },
       {
-        "id": 41.340378052764976,
+        "id": 40.647571615959954,
         "name": "skin tones",
         "icon": "explorerIcon",
         "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw/skin%20tones"
       },
       {
-        "id": 40.756348764414994,
+        "id": 41.102061205359206,
         "name": "PSs",
         "icon": "explorerIcon",
         "path": "file:///D:/Things/PSs"
       },
       {
-        "id": 40.826207233526404,
-        "name": "9",
-        "icon": "explorerIcon",
-        "path": "file:///D:/Things/PSs/Export/9"
-      },
-      {
-        "id": 41.11378781770638,
+        "id": 40.927560418244546,
         "name": "Face",
         "icon": "explorerIcon",
         "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw/Face"
       },
       {
-        "id": 40.79809061812705,
+        "id": 40.85186535608056,
         "name": "ImageFiles5.0",
         "icon": "explorerIcon",
         "path": "file:///C:/Things/c%23/ImageFilesVSCode/ImageFiles5.0"
       },
       {
-        "id": 41.160633555685806,
+        "id": 41.363668772140684,
         "name": "net6.0",
         "icon": "explorerIcon",
         "path": "file:///C:/Things/c%23/getOpenExplorers/getOpenExplorers/bin/Debug/net6.0"
       },
       {
-        "id": 40.959024260763364,
+        "id": 40.68793243207134,
         "name": "Artist - Tsuaii",
         "icon": "explorerIcon",
         "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw/top/Artist%20-%20Tsuaii"
       },
       {
-        "id": 41.11499885046075,
+        "id": 41.10651972982606,
         "name": "mockup",
         "icon": "explorerIcon",
         "path": "file:///C:/Things/React/links-electron/mockup"
       },
       {
-        "id": 41.09918799586081,
+        "id": 40.6856878326134,
         "name": "Images",
         "icon": "explorerIcon",
         "path": "file:///C:/Things/React/links-electron/src/Images"
       },
       {
-        "id": 40.831432710762726,
+        "id": 41.45885198426271,
         "name": "Downloads",
         "icon": "explorerIcon",
         "path": "file:///C:/Users/Shane/Downloads"
       },
       {
-        "id": 40.69781251482219,
-        "name": "getOpenExplorers",
-        "icon": "explorerIcon",
-        "path": "file:///C:/Things/React/links-electron/helperPrograms/getOpenExplorers"
-      },
-      {
-        "id": 41.48702007568974,
+        "id": 41.097129038845786,
         "name": "Export",
         "icon": "explorerIcon",
         "path": "file:///D:/Things/PSs/Export"
       },
       {
-        "id": 40.931893046280805,
-        "name": "dhg",
+        "id": 41.273184271653776,
+        "name": "TempState",
         "icon": "explorerIcon",
-        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg"
+        "path": "file:///C:/Users/Shane/AppData/Local/Packages/Microsoft.ScreenSketch_8wekyb3d8bbwe/TempState"
       },
       {
-        "id": 41.28450308030544,
-        "name": "drw",
+        "id": 41.47388848661277,
+        "name": "public",
         "icon": "explorerIcon",
-        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw"
+        "path": "file:///C:/Things/React/links-electron/public"
       },
       {
-        "id": 40.65417527122536,
+        "id": 41.45532424953868,
         "name": "Resources",
         "icon": "explorerIcon",
         "path": "file:///C:/Things/c%23/SaveExplorerWpf/Resources"
       },
       {
-        "id": 40.907851681364356,
-        "name": "TempState",
+        "id": 41.14975589831235,
+        "name": "Back",
         "icon": "explorerIcon",
-        "path": "file:///C:/Users/Shane/AppData/Local/Packages/Microsoft.ScreenSketch_8wekyb3d8bbwe/TempState"
+        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg/drw/body/Back"
+      },
+      {
+        "id": 41.32799932251902,
+        "name": "Programs",
+        "icon": "explorerIcon",
+        "path": "file:///C:/ProgramData/Microsoft/Windows/Start%20Menu/Programs"
+      },
+      {
+        "id": 41.462127178639015,
+        "name": "dhg",
+        "icon": "explorerIcon",
+        "path": "file:///D:/Program%20Files%20(x86)/Regclean%20pro/Folder/dhg"
       }
     ]
   },
