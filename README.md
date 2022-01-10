@@ -19,7 +19,7 @@ I like to use it for
 
 ![Mockup](https://github.com/vandor5676/links-electron/blob/main/readMeMedia/mockup.png "")
 
-# Run: `npm run dev` to start the app
+# Run: `npm install` and then `npm run dev` to start the app
 
 # Getting Started with Create React App
 
