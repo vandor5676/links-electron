@@ -18,6 +18,7 @@ function createWindow() {
     minHeight: 300,
     frame: false,
     autoHideMenuBar: true,
+    icon: __dirname + '/explorerIconBlue.ico',
     webPreferences: {
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js')
