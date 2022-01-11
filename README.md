@@ -1,4 +1,4 @@
-# Links Electron.
+# Links Electron
 This application saves and opens Windows file explorers that you have open on your computer.\
 The goal of this project was to help me learn Electron, React and Node.js. i also got some more practice with JavaScript, CSS and designing mockups in Adobe Xd.
 
