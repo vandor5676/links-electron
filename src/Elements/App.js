@@ -60,6 +60,7 @@ function App(props) {
     setState([...state])
     window.myAPI.saveState(state)
   }
+
   //removes item in state and saves state locally
   function removeItem() {
     const index = state[selectedDrawerItem].items.findIndex(x => x.id === selectedMainContentItemID);
@@ -74,8 +75,6 @@ function App(props) {
   // used to select different drawer items
   const toggleSelected = index => {
     let newState = state
-    if (index === 1) { newState = window.myAPI.getOpenExplorers() }
-
     let copy = newState
     copy.forEach(element => {
       element.selected = false
